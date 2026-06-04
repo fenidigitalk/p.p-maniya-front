@@ -1,0 +1,6 @@
+{
+  "name": "P.P. Maniya Trust",
+  "description": "Late Popatbhai Premjibhai Maniya Education & Medical Trust official website, providing premium services in education, healthcare, and community welfare.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
