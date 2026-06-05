@@ -23,17 +23,18 @@ import {
   Wrench,
   PersonStanding,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { IMAGES, DICTIONARY, Lang, DictType } from "@/lib/constants";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { section } from "motion/react-client";
 
 interface HomePageProps {
   lang: Lang;
   setLang: (lang: Lang) => void;
   currentPage: string;
   navigateTo: (page: string) => void;
-  setDonationForm: (fn: (prev: any) => any) => void;
   setToastMessage: (msg: string) => void;
 }
 const accentMap: Record<
@@ -128,7 +129,6 @@ export default function HomePage({
   setLang,
   navigateTo,
   currentPage,
-  setDonationForm,
   setToastMessage,
 }: HomePageProps) {
   const safeLang: Lang = lang && DICTIONARY[lang] ? lang : "en";
@@ -143,6 +143,7 @@ export default function HomePage({
     { num: "07", title: "Skill Development", desc: "Professional workshop...", icon: Wrench, accent: "sky" },
     { num: "08", title: "Senior Citizen Support", desc: "Geriatric screening camps...", icon: PersonStanding, accent: "orange" },
   ];
+  const router = useRouter();
   const [hovered, setHovered] = useState<number | null>(null);
 
 
@@ -160,7 +161,6 @@ export default function HomePage({
 
           {/* Background decorative shapes */}
           <div className="absolute inset-0 z-0">
-            <div className="absolute top-0 right-0 w-[55%] h-full bg-gradient-to-bl from-orange-50 via-amber-50 to-transparent" />
             <div className="absolute -top-20 right-[30%] w-72 h-72 bg-orange-100 rounded-full opacity-40 blur-3xl" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 rounded-full opacity-60 blur-3xl" />
             {/* Dotted pattern */}
@@ -218,7 +218,7 @@ export default function HomePage({
                     <span>{t.donateCta}</span>
                   </button>
                   <button
-                    onClick={() => navigateTo("activities")}
+                    onClick={() => router.push("/activities")}
                     className="px-6 py-3.5 bg-white text-slate-700 hover:text-[#C35214] font-semibold rounded-xl border border-slate-200 hover:border-orange-300 hover:bg-orange-50 transition-all flex items-center gap-1.5 text-sm shadow-sm"
                   >
                     <span>{t.knowWork}</span>
@@ -256,7 +256,7 @@ export default function HomePage({
                 {/* Main large card */}
                 <div className="absolute top-0 left-8 right-0 h-72 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                   <Image
-                    src={IMAGES.medicalCamp}
+                    src="/activities_img3.jpeg"
                     alt="Medical Camp"
                     fill
                     className="object-cover"
@@ -270,9 +270,9 @@ export default function HomePage({
                 </div>
 
                 {/* Bottom left card */}
-                <div className="absolute bottom-0 left-0 w-48 h-44 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+                <div className="absolute bottom-0 left-0 w-44 h-44 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
                   <Image
-                    src={IMAGES.education}
+                    src="/activities_img2.jpeg"
                     alt="Education"
                     fill
                     className="object-cover"
@@ -304,6 +304,25 @@ export default function HomePage({
                     </div>
                   ))}
                 </div>
+
+                <div className="absolute bottom-0 right-50 w-44 h-44 rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+                  <Image
+                    src="/activities_img4.jpeg"
+                    alt="Community Welfare"
+                    fill
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+                  <div className="absolute bottom-2 left-2 text-white">
+                    <span className="block text-[9px] font-bold uppercase tracking-widest text-amber-400 mb-0.5">Welfare</span>
+                    <span className="block text-xs font-bold">Relief Drives</span>
+                  </div>
+                </div>
+
+                
+
+                
 
                 {/* Floating badge */}
                 <div className="absolute top-4 right-4 bg-[#C35214] text-white rounded-2xl px-3 py-2 shadow-lg text-center">
@@ -343,12 +362,10 @@ export default function HomePage({
           </div>
         </section>
 
-
-        {/* ===================== CHAIRMAN SECTION ===================== */}
+        {/* CHAIRMAN */}
         <section className="py-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #fdf4ee 0%, #fff9f5 50%, #f8faff 100%)" }}>
 
           {/* Background accents */}
-          <div className="absolute top-0 left-0 w-64 h-64 rounded-full opacity-20 blur-3xl" style={{ background: "#C35214" }} />
           <div className="absolute bottom-0 right-0 w-80 h-80 bg-amber-100 rounded-full opacity-30 blur-3xl" />
           <div
             className="absolute inset-0 opacity-[0.025]"
@@ -444,8 +461,8 @@ export default function HomePage({
           </div>
         </section>
 
-        {/* FOCUS AREAS */}
-        {/* ===================== PILLARS SECTION ===================== */}
+
+        {/* PILLARS */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -533,10 +550,7 @@ export default function HomePage({
           </div>
         </section>
 
-
-
-
-        {/* ===================== PROJECTS SECTION ===================== */}
+        {/* PROJECTS */}
 
         <section className="py-20 relative overflow-hidden" style={{ background: "linear-gradient(180deg, #fafafa 0%, #fff7f3 100%)" }}>
 
@@ -564,7 +578,7 @@ export default function HomePage({
               {[
                 {
                   title: "P.P. Maniya Merit Scholarship",
-                  img: IMAGES.education,
+                  img: "/activities_img2.jpeg",
                   impact: "200+ Students receiving tuition backing",
                   impactIcon: BookOpen,
                   desc: "A robust scholarship model targeting lower-income high performers in school and technical vocational institutions.",
@@ -574,7 +588,7 @@ export default function HomePage({
                 },
                 {
                   title: "Mega Diagnostic & Medical Camps",
-                  img: IMAGES.medicalCamp,
+                  img: "/activities_img3.jpeg",
                   impact: "5,000+ Screened for critical alignment checks",
                   impactIcon: Activity,
                   desc: "Mobilizing specialist doctors, modern testing reagents, and medicine modules to rural sectors around Surat.",
@@ -584,7 +598,7 @@ export default function HomePage({
                 },
                 {
                   title: "Food Security & Hunger Relief",
-                  img: IMAGES.charityWelfare,
+                  img: "/activities_img4.jpeg",
                   impact: "15,000+ Nutritious meals served this cycle",
                   impactIcon: Heart,
                   desc: "Providing staple grains, protein foods, and direct organic groceries support to daily labor zones and communities.",
@@ -635,11 +649,10 @@ export default function HomePage({
                     {/* Donate button */}
                     <button
                       onClick={() => {
-                        setDonationForm((prev: any) => ({ ...prev, amount: prj.amount, message: prj.message }));
-                        navigateTo("donate");
+                        router.push("/activities");
                       }}
                       className="w-full py-3 text-white font-bold text-xs uppercase tracking-wider rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 group/btn"
-                      style={{ background: `linear-gradient(135deg, #C35214` }}
+                      style={{ background: "linear-gradient(135deg, #C35214, #ea580c)" }}
                     >
                       <Heart className="w-3.5 h-3.5 fill-white" />
                       <span>Support This Project</span>
@@ -651,7 +664,7 @@ export default function HomePage({
             </div>
             <div className="flex justify-center mt-6">
               <button
-                onClick={() => navigateTo("activities")}
+                onClick={() => router.push("/activities")}
                 className="group flex items-center gap-2 mt-4 md:mt-0 font-bold text-sm px-5 py-2.5 rounded-xl border-2 transition-all hover:-translate-y-0.5"
                 style={{ color: "#C35214", borderColor: "#C35214" }}
               >
@@ -662,21 +675,158 @@ export default function HomePage({
           </div>
         </section>
 
+        {/* VOLUNTEER */}
+        <section className="py-20" style={{ background: "#ffffff" }}>
+          <div className="max-w-7xl mx-auto">
+
+            {/* Header */}
+            <div className="text-center mb-14">
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest border mb-4"
+                style={{ background: "#fff3ee", color: "#C35214", borderColor: "#f5c9b0" }}
+              >
+                <HeartHandshake className="w-3.5 h-3.5" />
+                <span>Join Our Mission</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
+                Become a Volunteer
+              </h2>
+              <p className="max-w-xl mx-auto text-xs sm:text-sm leading-relaxed" style={{ color: "#7c4a2d" }}>
+                Join hundreds of dedicated volunteers making a real difference across Gujarat and Western India.
+              </p>
+            </div>
+
+            {/* Layout */}
+            <div className="grid lg:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
+
+              {/* LEFT: Role Rows */}
+              <div className="flex flex-col gap-4">
+                {[
+                  {
+                    icon: Activity,
+                    title: "Medical Volunteer",
+                    desc: "Assist doctors at diagnostic camps and health screenings.",
+                  },
+                  {
+                    icon: BookOpen,
+                    title: "Education Mentor",
+                    desc: "Guide scholarship students with tutoring and career advice.",
+                  },
+                  {
+                    icon: Heart,
+                    title: "Relief Worker",
+                    desc: "Help distribute food and essentials during relief drives.",
+                  },
+                  {
+                    icon: Users,
+                    title: "Outreach Coordinator",
+                    desc: "Spread awareness and mobilize communities for our events.",
+                  },
+                ].map((role, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 px-5 py-4 bg-white rounded-2xl transition-all duration-200 cursor-default"
+                    style={{ border: "0.5px solid #f5c9b0" }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.borderColor = "#C35214";
+                      e.currentTarget.style.boxShadow = "0 4px 16px #C3521415";
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.borderColor = "#f5c9b0";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
+                  >
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: "#fff3ee", border: "0.5px solid #f5c9b0" }}
+                    >
+                      <role.icon className="w-4 h-4" style={{ color: "#C35214" }} />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-slate-800 text-sm font-medium mb-0.5">{role.title}</p>
+                      <p className="text-slate-400 text-xs leading-relaxed">{role.desc}</p>
+                    </div>
+                    <ChevronRight className="w-4 h-4 flex-shrink-0" style={{ color: "#C35214", opacity: 0.4 }} />
+                  </div>
+                ))}
+              </div>
+
+              {/* RIGHT: CTA Panel */}
+              <div className="rounded-2xl p-8 flex flex-col gap-5" style={{ background: "#C35214" }}>
+                <div>
+                  <p className="text-white text-lg font-semibold leading-snug mb-2">
+                    Ready to make an impact?
+                  </p>
+                  <p className="text-sm leading-relaxed" style={{ color: "#ffd0b5" }}>
+                    Every hour you give creates lasting change in someone's life. No experience needed — just a willing heart.
+                  </p>
+                </div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { val: "100+", label: "Volunteers" },
+                    { val: "7+", label: "Years Active" },
+                    { val: "50+", label: "Camps Held" },
+                  ].map((s, i) => (
+                    <div key={i} className="rounded-xl py-3 text-center" style={{ background: "rgba(255,255,255,0.12)" }}>
+                      <p className="text-white text-xl font-semibold">{s.val}</p>
+                      <p className="text-[10px] uppercase tracking-wider mt-0.5" style={{ color: "#ffd0b5" }}>{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Divider */}
+                <div style={{ borderTop: "0.5px solid rgba(255,255,255,0.2)" }} />
+
+                {/* Perks */}
+                <div className="flex flex-col gap-2.5">
+                  {[
+                    "Certificate of appreciation",
+                    "Flexible time commitment",
+                    "Training provided on-site",
+                  ].map((perk, i) => (
+                    <div key={i} className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-white flex-shrink-0" />
+                      <span className="text-sm" style={{ color: "#ffd0b5" }}>{perk}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Button */}
+                <button
+                  onClick={() => navigateTo("contact")}
+                  className="w-full py-3.5 bg-white rounded-xl text-xs font-medium uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                  style={{ color: "#C35214" }}
+                  onMouseEnter={e => (e.currentTarget.style.background = "#fff3ee")}
+                  onMouseLeave={e => (e.currentTarget.style.background = "#ffffff")}
+                >
+                  <ArrowRight className="w-4 h-4" />
+                  <span>Register as Volunteer</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
         {/* TRANSPARENCY */}
-        <section className="py-16 relative" style={{ background: "#0f172a" }}>
-          <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <section className="py-20" style={{ background: "#ffffff" }}>
+          <div className="max-w-7xl mx-auto px-4">
 
             {/* Header */}
             <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest border mb-4"
-                style={{ background: "#1e293b", color: "#C35214", borderColor: "#C3521440" }}>
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest border mb-4"
+                style={{ background: "#fff3ee", color: "#C35214", borderColor: "#f5c9b0" }}
+              >
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Regulatory Assurance</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
                 Transparency & Verified Credentials
               </h2>
-              <p className="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+              <p className="max-w-xl mx-auto leading-relaxed text-xs sm:text-sm" style={{ color: "#7c4a2d" }}>
                 We maintain absolute financial compliance matching statutory expectations for authorized NGOs in India.
               </p>
             </div>
@@ -729,30 +879,33 @@ export default function HomePage({
               ].map((doc, idx) => (
                 <div
                   key={idx}
-                  className="group p-5 rounded-2xl flex flex-col transition-all duration-200"
-                  style={{
-                    background: "#1e293b",
-                    border: "0.5px solid #334155",
+                  className="p-5 rounded-2xl flex flex-col transition-all duration-200 bg-white"
+                  style={{ border: "0.5px solid #f5c9b0" }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = "#C35214";
+                    e.currentTarget.style.boxShadow = "0 4px 16px #C3521415";
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = "#C35214")}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = "#334155")}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = "#f5c9b0";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
                 >
                   {/* Top row: icon + verified badge */}
                   <div className="flex items-start justify-between mb-4">
                     <div
                       className="w-9 h-9 rounded-xl flex items-center justify-center"
-                      style={{ background: "#C3521415" }}
+                      style={{ background: "#fff3ee", border: "0.5px solid #f5c9b0" }}
                     >
                       <doc.icon className="w-4 h-4" style={{ color: "#C35214" }} />
                     </div>
-                    <div className="flex items-center gap-1" style={{ color: "#34d399" }}>
+                    <div className="flex items-center gap-1 text-green-600">
                       <Check className="w-3.5 h-3.5" />
                       <span className="text-[11px] font-medium">Verified</span>
                     </div>
                   </div>
 
                   {/* Title */}
-                  <p className="text-slate-100 text-sm font-medium mb-2 leading-snug">
+                  <p className="text-slate-800 text-sm font-medium mb-2 leading-snug">
                     {doc.title}
                   </p>
 
@@ -761,15 +914,15 @@ export default function HomePage({
                     className="inline-block font-mono text-[11px] font-semibold px-2 py-1 rounded-md mb-3 self-start"
                     style={{
                       color: "#C35214",
-                      background: "#C3521412",
-                      border: "0.5px solid #C3521430",
+                      background: "#fff3ee",
+                      border: "0.5px solid #f5c9b0",
                     }}
                   >
                     {doc.code}
                   </span>
 
                   {/* Description */}
-                  <p className="text-slate-400 text-xs leading-relaxed flex-1 mb-4">
+                  <p className="text-slate-500 text-xs leading-relaxed flex-1 mb-4">
                     {doc.details}
                   </p>
 
@@ -779,11 +932,11 @@ export default function HomePage({
                     className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider px-3 py-2 rounded-lg self-start transition-all"
                     style={{
                       color: "#C35214",
-                      background: "#C3521410",
-                      border: "0.5px solid #C3521440",
+
+                      border: "0.5px solid #f5c9b0",
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.background = "#C3521425")}
-                    onMouseLeave={e => (e.currentTarget.style.background = "#C3521410")}
+                    onMouseEnter={e => (e.currentTarget.style.background = "#ffe8d6")}
+                    onMouseLeave={e => (e.currentTarget.style.background = "#fff3ee")}
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download</span>
@@ -791,6 +944,7 @@ export default function HomePage({
                 </div>
               ))}
             </div>
+
           </div>
         </section>
 
@@ -830,6 +984,107 @@ export default function HomePage({
               >
                 Become a Voluntary Pillar
               </button>
+            </div>
+
+          </div>
+        </section>
+
+        {/* TESTIMONIALS */}
+        <section className="py-20" style={{ background: "white" }}>
+          <div className="max-w-7xl mx-auto px-4">
+
+            {/* Header */}
+            <div className="text-center mb-14">
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest border mb-4"
+                style={{ background: "#fff3ee", color: "#C35214", borderColor: "#f5c9b0" }}
+              >
+                <HeartHandshake className="w-3.5 h-3.5" />
+                <span>Beneficiary Stories</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
+                Lives We Have Touched
+              </h2>
+              <p className="max-w-xl mx-auto text-xs sm:text-sm leading-relaxed" style={{ color: "#7c4a2d" }}>
+                Real stories from students, patients, and families whose lives changed through our programs.
+              </p>
+            </div>
+
+            {/* Cards */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  quote: "The P.P. Maniya scholarship helped me complete my engineering degree. Without it, I would have had to drop out in my second year.",
+                  name: "Rajan Patel",
+                  tag: "Scholarship Beneficiary, 2023",
+                  initials: "RP",
+                  avatarBg: "#fff3ee",
+                  avatarColor: "#C35214",
+                },
+                {
+                  quote: "The medical camp detected my father's diabetes early. The free medicines and follow-up care gave our family so much relief.",
+                  name: "Sunita Modi",
+                  tag: "Medical Camp Beneficiary",
+                  initials: "SM",
+                  avatarBg: "#f0fdf4",
+                  avatarColor: "#16a34a",
+                },
+                {
+                  quote: "During the floods, the trust was the first to reach our village with food and supplies. They treated us with such dignity and care.",
+                  name: "Arvind Koli",
+                  tag: "Flood Relief Beneficiary",
+                  initials: "AK",
+                  avatarBg: "#eff6ff",
+                  avatarColor: "#2563eb",
+                },
+              ].map((t, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl p-6 flex flex-col gap-4 transition-all duration-200"
+                  style={{ border: "0.5px solid #f5c9b0" }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = "#C35214";
+                    e.currentTarget.style.boxShadow = "0 4px 20px #C3521415";
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = "#f5c9b0";
+                    e.currentTarget.style.boxShadow = "none";
+                  }}
+                >
+                  {/* Stars */}
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, s) => (
+                      <Heart
+                        key={s}
+                        className="w-3.5 h-3.5 fill-[#C35214]"
+                        style={{ color: "#C35214" }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Quote */}
+                  <p className="text-slate-600 text-sm leading-relaxed flex-1 italic">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+
+                  {/* Author */}
+                  <div
+                    className="flex items-center gap-3 pt-4"
+                    style={{ borderTop: "0.5px solid #f5c9b0" }}
+                  >
+                    <div
+                      className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0"
+                      style={{ background: t.avatarBg, color: t.avatarColor }}
+                    >
+                      {t.initials}
+                    </div>
+                    <div>
+                      <p className="text-slate-800 text-sm font-medium">{t.name}</p>
+                      <p className="text-slate-400 text-xs">{t.tag}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
           </div>

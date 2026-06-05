@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { IMAGES, DICTIONARY, Lang, DictType } from "@/lib/constants";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface HeaderProps {
   lang: Lang;
@@ -27,9 +27,12 @@ interface HeaderProps {
 export default function Header({
   lang,
   setLang,
-  currentPage,
+  currentPage: _currentPage,
   navigateTo,
 }: HeaderProps) {
+    const pathname = usePathname();
+    const currentPage = pathname === "/" ? "home" : pathname.replace("/", "").split("/")[0];
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -37,10 +40,7 @@ export default function Header({
   const safeLang: Lang = lang && DICTIONARY[lang] ? lang : "en";
   const t: DictType = DICTIONARY[safeLang];
 
-//  const handleNavigate = (page: string) => {
-//   navigateTo?.(page);  
-//   setMobileMenuOpen(false);
-// };
+
 const handleNavigate = (page: string) => {
   if (page === "home") {
     router.push("/");
