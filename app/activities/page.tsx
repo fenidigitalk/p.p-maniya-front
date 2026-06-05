@@ -2,7 +2,15 @@
 
 // pages/ActivitiesPage.tsx
 import Image from "next/image";
-import { BookOpen, Activity, Heart } from "lucide-react";
+import {
+  BookOpen,
+  Activity,
+  Heart,
+  Award,
+  UserCheck,
+  Users,
+  ShieldCheck,
+} from "lucide-react";
 import { IMAGES, DICTIONARY, Lang, DictType } from "@/lib/constants";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
@@ -31,274 +39,357 @@ export default function ActivitiesPage({
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[#EA580C] text-xs font-bold uppercase tracking-widest">
-              WHAT WE DO
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-950 mt-1 mb-4">
+          <div className="text-center max-w-3xl mx-auto mb-16 relative">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-[#C35214] text-lg">✦</span>
+              <span className="text-[#C35214] text-[18px] font-bold uppercase tracking-widest">
+                WHAT WE DO
+              </span>
+              <span className="text-[#C35214] text-lg">✦</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-950 mb-4">
               Focused Projects & Welfare Schemes
             </h1>
-            <div className="w-20 h-1 bg-[#EA580C] mx-auto rounded-full mb-4" />
-            <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
+
+            <p className="text-[#64748B] text-sm sm:text-base leading-relaxed">
               All activities are designed with direct-reach validation under the
               strict supervision of our medical directors and board trustees.
             </p>
           </div>
 
           {/* Education */}
-          <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm mb-12">
-            <div className="grid lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-4 relative aspect-[4/3] w-full rounded-2xl bg-slate-100 overflow-hidden shadow-md">
+          <div className="mb-12 rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
+            <div className="grid lg:grid-cols-2">
+              {/* Image */}
+              <div className="relative min-h-[320px]">
                 <Image
-                  src={IMAGES.education}
-                  fill
-                  alt="Education"
-                  className="object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="lg:col-span-8">
-                <div className="flex items-center gap-1.5 text-amber-600 font-bold text-xs uppercase tracking-wider mb-2">
-                  <BookOpen className="w-4 h-4" />
-                  <span>Education Upliftment Division</span>
-                </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
-                  Empowering Young Scholastic Dreamers
-                </h2>
-                <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">
-                  Education is the master key to breakthrough economic cycle
-                  constraints. Late Popatbhai Premjibhai Maniya Trust operates
-                  dedicated student assistance systems that clear hurdles for
-                  low-income candidates across government and municipal school
-                  circles.
-                </p>
-                <div className="grid sm:grid-cols-3 gap-4 mb-4">
-                  {[
-                    {
-                      title: "Merit Scholarships",
-                      desc: "Focusing on technical and engineering streams.",
-                    },
-                    {
-                      title: "Scholastic Toolkits",
-                      desc: "Free note-books, geometry boxes, and bags.",
-                    },
-                    {
-                      title: "Target Mentoring",
-                      desc: "Guidance seminars for final board studies.",
-                    },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className="bg-slate-50 p-3 rounded-xl border border-slate-100"
-                    >
-                      <span className="block font-bold text-slate-900 text-sm">
-                        {item.title}
-                      </span>
-                      <span className="block text-slate-500 text-xs mt-0.5">
-                        {item.desc}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  onClick={() => {
-                    setDonationForm((prev: any) => ({
-                      ...prev,
-                      amount: "1000",
-                      message: "Supporting Educational Scholarships",
-                    }));
-                    navigateTo("donate");
-                  }}
-                  className="px-4 py-2 bg-[#EA580C] hover:bg-[#EA580C]/90 text-white font-bold text-xs uppercase rounded-xl transition"
-                >
-                  Support Underprivileged Students • ₹1,000
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Healthcare */}
-          <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm mb-12">
-            <div className="grid lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-8 order-2 lg:order-1">
-                <div className="flex items-center gap-1.5 text-blue-600 font-bold text-xs uppercase tracking-wider mb-2">
-                  <Activity className="w-4 h-4" />
-                  <span>Healthcare Assistance Division</span>
-                </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
-                  Pristine Medical Diagnostic Camps & Medicine Banks
-                </h2>
-                <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">
-                  We believe that financial distress must never block basic
-                  healthcare access. We organize routine wellness camps where
-                  modern medical checks are offered completely complimentary to
-                  rural residents.
-                </p>
-                <div className="grid sm:grid-cols-3 gap-4 mb-4">
-                  {[
-                    {
-                      title: "Subsidized Diagnosis",
-                      desc: "Assisting high-cost lab pathology bills.",
-                    },
-                    {
-                      title: "Medicine Subsidies",
-                      desc: "Complimentary distribution of critical items.",
-                    },
-                    {
-                      title: "Cataract Screenings",
-                      desc: "Free optical assemblies and standard glasses.",
-                    },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className="bg-slate-50 p-3 rounded-xl border border-slate-100"
-                    >
-                      <span className="block font-bold text-slate-900 text-sm">
-                        {item.title}
-                      </span>
-                      <span className="block text-slate-500 text-xs mt-0.5">
-                        {item.desc}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  onClick={() => {
-                    setDonationForm((prev: any) => ({
-                      ...prev,
-                      amount: "5000",
-                      message: "Supporting Medical Camps",
-                    }));
-                    navigateTo("donate");
-                  }}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase rounded-xl transition"
-                >
-                  Sponsor Medical Camp Day • ₹5,000
-                </button>
-              </div>
-              <div className="lg:col-span-4 order-1 lg:order-2 relative aspect-[4/3] w-full rounded-2xl bg-slate-100 overflow-hidden shadow-md">
-                <Image
-                  src={IMAGES.medicalCamp}
+                  src="/activities_img2.jpeg"
                   fill
                   alt="Medical Camp"
                   className="object-cover"
                   referrerPolicy="no-referrer"
                 />
+                {/* Badge */}
+                <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="text-amber-100 text-[10px] font-semibold uppercase tracking-wider">
+                    Education Division
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="bg-white p-8 flex flex-col justify-between">
+                <div>
+                  <h2 className="text-xl font-extrabold text-slate-900 mb-3 leading-snug">
+                    Empowering Young Scholastic Dreamers
+                  </h2>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                    Education is the master key to breakthrough economic cycle
+                    constraints. Late Popatbhai Premjibhai Maniya Trust operates
+                    dedicated student assistance systems that clear hurdles for
+                    low-income candidates across government and municipal school
+                    circles.
+                  </p>
+
+                  <div className="grid grid-cols-3 gap-3 mb-6">
+                    {[
+                      {
+                        title: "Merit Scholarships",
+                        desc: "Technical and engineering streams.",
+                        icon: Award,
+                      },
+                      {
+                        title: "Scholastic Toolkits",
+                        desc: "Free notebooks, geometry boxes, bags.",
+                        icon: BookOpen,
+                      },
+                      {
+                        title: "Target Mentoring",
+                        desc: "Guidance seminars for board studies.",
+                        icon: UserCheck,
+                      },
+                    ].map((item, i) => (
+                      <div
+                        key={i}
+                        className="bg-amber-50 border border-amber-100 rounded-2xl p-3"
+                      >
+                        <item.icon className="w-5 h-5 text-amber-700 mb-2" />
+                        <p className="text-xs font-bold text-amber-900 mb-1">
+                          {item.title}
+                        </p>
+                        <p className="text-[11px] text-[#C35214] leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => {
+                      setDonationForm((prev: any) => ({
+                        ...prev,
+                        amount: "1000",
+                        message: "Supporting Educational Scholarships",
+                      }));
+                      navigateTo("donate");
+                    }}
+                    className="flex items-center gap-2 px-5 py-3 bg-[#C35214] hover:bg-[#C35214]/90 text-white font-bold text-xs uppercase tracking-wide rounded-2xl transition shadow-md"
+                  >
+                    Support Underprivileged Students
+                    <span className="bg-white/20 px-2 py-0.5 rounded-lg">
+                      ₹1,000
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Healthcare */}
+          <div className="mb-12 rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
+            <div className="grid lg:grid-cols-2">
+              {/* Content */}
+              <div className="bg-white p-8 flex flex-col justify-between order-2 lg:order-1">
+                <div>
+                  <h2 className="text-xl font-extrabold text-slate-900 mb-3 leading-snug">
+                    Pristine Medical Diagnostic Camps & Medicine Banks
+                  </h2>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                    We believe that financial distress must never block basic
+                    healthcare access. We organize routine wellness camps where
+                    modern medical checks are offered completely complimentary
+                    to rural residents.
+                  </p>
+
+                  <div className="grid grid-cols-3 gap-3 mb-6">
+                    {[
+                      {
+                        title: "Subsidized Diagnosis",
+                        desc: "Assisting high-cost lab pathology bills.",
+                        icon: Activity,
+                      },
+                      {
+                        title: "Medicine Subsidies",
+                        desc: "Complimentary distribution of critical items.",
+                        icon: Heart,
+                      },
+                      {
+                        title: "Cataract Screenings",
+                        desc: "Free optical assemblies and standard glasses.",
+                        icon: ShieldCheck,
+                      },
+                    ].map((item, i) => (
+                      <div
+                        key={i}
+                        className="bg-amber-50  border border-amber-100 rounded-2xl p-3"
+                      >
+                        <item.icon className="w-5 h-5 text-amber-700 mb-2" />
+                        <p className="text-xs font-bold text-amber-900 mb-1">
+                          {item.title}
+                        </p>
+                        <p className="text-[11px] text-[#C35214] leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => {
+                      setDonationForm((prev: any) => ({
+                        ...prev,
+                        amount: "5000",
+                        message: "Supporting Medical Camps",
+                      }));
+                      navigateTo("donate");
+                    }}
+                    className="flex items-center gap-2 px-5 py-3 bg-[#C35214] hover:bg-[#C35214]/90 text-white font-bold text-xs uppercase tracking-wide rounded-2xl transition shadow-md"
+                  >
+                    Sponsor Medical Camp Day
+                    <span className="bg-white/20 px-2 py-0.5 rounded-lg">
+                      ₹5,000
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Image */}
+              <div className="relative min-h-[320px] order-1 lg:order-2">
+                <Image
+                  src="/activities_img3.jpeg"
+                  fill
+                  alt="Medical Camp"
+                  className="object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center gap-1.5">
+                  <Activity className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="text-amber-100 text-[10px] font-semibold uppercase tracking-wider">
+                    Healthcare Division
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Community */}
-          <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm mb-12">
-            <div className="grid lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-4 relative aspect-[4/3] w-full rounded-2xl bg-slate-100 overflow-hidden shadow-md">
+          <div className="mb-12 rounded-3xl overflow-hidden border border-slate-100 shadow-sm">
+            <div className="grid lg:grid-cols-2">
+              {/* Image */}
+              <div className="relative min-h-[320px]">
                 <Image
-                  src={IMAGES.charityWelfare}
+                  src="/activities_img4.jpeg"
                   fill
                   alt="Community Welfare"
                   className="object-cover"
                   referrerPolicy="no-referrer"
                 />
+                <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center gap-1.5">
+                  <Heart className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="text-amber-100 text-[10px] font-semibold uppercase tracking-wider">
+                    Community Division
+                  </span>
+                </div>
               </div>
-              <div className="lg:col-span-8">
-                <div className="flex items-center gap-1.5 text-emerald-600 font-bold text-xs uppercase tracking-wider mb-2">
-                  <Heart className="w-4 h-4 animate-pulse" />
-                  <span>Community Nutrition & Relief</span>
+
+              {/* Content */}
+              <div className="bg-white p-8 flex flex-col justify-between">
+                <div>
+                  <h2 className="text-xl font-extrabold text-slate-900 mb-3 leading-snug">
+                    Ensuring Basic Resource & Food Security
+                  </h2>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                    Late Popatbhai Premjibhai Maniya Trust drives direct
+                    humanitarian aid assemblies that distribute bulk staples,
+                    pulses, and dry organic assets directly into marginalized
+                    sections in Saurashtra and Gujarat.
+                  </p>
+
+                  <div className="grid grid-cols-3 gap-3 mb-6">
+                    {[
+                      {
+                        title: "Nutritious Food Kits",
+                        desc: "Grains, oil, lentils support packs.",
+                        icon: Heart,
+                      },
+                      {
+                        title: "Monsoon Security Aid",
+                        desc: "Shelter components and immediate assets.",
+                        icon: ShieldCheck,
+                      },
+                      {
+                        title: "Clean Water Reach",
+                        desc: "Setting temporary drinking water posts.",
+                        icon: Users,
+                      },
+                    ].map((item, i) => (
+                      <div
+                        key={i}
+                        className="bg-amber-50 border border-amber-100 rounded-2xl p-3"
+                      >
+                        <item.icon className="w-5 h-5 text-amber-700 mb-2" />
+                        <p className="text-xs font-bold text-amber-900 mb-1">
+                          {item.title}
+                        </p>
+                        <p className="text-[11px] text-[#C35214] leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
-                  Ensuring Basic Resource & Food Security
-                </h2>
-                <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-4">
-                  Late Popatbhai Premjibhai Maniya Trust drives direct
-                  humanitarian aid assemblies that distribute bulk staples,
-                  pulses, and dry organic assets directly into marginalized
-                  sections in Saurashtra and Gujarat.
-                </p>
-                <div className="grid sm:grid-cols-3 gap-4 mb-4">
-                  {[
-                    {
-                      title: "Nutritious Food Kits",
-                      desc: "Grains, oil, lentils support packs.",
-                    },
-                    {
-                      title: "Monsoon Security Aid",
-                      desc: "Shelter components and immediate assets.",
-                    },
-                    {
-                      title: "Clean Water Reach",
-                      desc: "Setting temporary drinking water posts.",
-                    },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className="bg-slate-50 p-3 rounded-xl border border-slate-100"
-                    >
-                      <span className="block font-bold text-slate-900 text-sm">
-                        {item.title}
-                      </span>
-                      <span className="block text-slate-500 text-xs mt-0.5">
-                        {item.desc}
-                      </span>
-                    </div>
-                  ))}
+
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => {
+                      setDonationForm((prev: any) => ({
+                        ...prev,
+                        amount: "2500",
+                        message: "Supporting Community Relief",
+                      }));
+                      navigateTo("donate");
+                    }}
+                    className="flex items-center gap-2 px-5 py-3 bg-[#C35214] hover:bg-[#C35214]/90 text-white font-bold text-xs uppercase tracking-wide rounded-2xl transition shadow-md"
+                  >
+                    Sponsor Local Resource Kits
+                    <span className="bg-white/20 px-2 py-0.5 rounded-lg">
+                      ₹2,500
+                    </span>
+                  </button>
                 </div>
-                <button
-                  onClick={() => {
-                    setDonationForm((prev: any) => ({
-                      ...prev,
-                      amount: "2500",
-                      message: "Supporting Community Relief",
-                    }));
-                    navigateTo("donate");
-                  }}
-                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase rounded-xl transition"
-                >
-                  Sponsor Local Resource Kits • ₹2,500
-                </button>
               </div>
             </div>
           </div>
 
           {/* Empowerment & Yoga */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-12">
             {[
               {
-                img: IMAGES.womenEmpower,
+                img: "/activities_img5.jpeg",
                 tag: "Empowerment",
-                tagColor: "text-rose-600",
+                tagColor: "#be123c",
                 title: "Vocational Stitching Skill Center",
                 desc: "Driving sewing technology sessions for women and daughters in rural blocks to foster financial confidence and independent business structures.",
+                stats: [
+                  { label: "Women Trained", value: "500+" },
+                  { label: "Villages", value: "12" },
+                ],
               },
               {
-                img: IMAGES.yogaCamp,
+                img: "/activities_img6.jpeg",
                 tag: "Wellness & Mind",
-                tagColor: "text-sky-600",
+                tagColor: "#0284c7",
                 title: "Yoga & Pranayama Wellness Retreats",
                 desc: "Providing comprehensive state wellness guidance sessions, focusing on correct mental alignment, stress release, and traditional wellness guidelines.",
+                stats: [
+                  { label: "Sessions Held", value: "80+" },
+                  { label: "Participants", value: "2,000+" },
+                ],
               },
             ].map((item, i) => (
-              <div
-                key={i}
-                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"
-              >
-                <div className="relative aspect-video w-full rounded-xl bg-slate-100 overflow-hidden mb-4">
+              <div key={i} className="group">
+                {/* Image - no card wrapper */}
+                <div className="relative h-64 rounded-2xl overflow-hidden mb-5">
                   <Image
                     src={item.img}
                     fill
                     alt={item.title}
-                    className="object-cover"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     referrerPolicy="no-referrer"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  <div className="absolute bottom-4 left-4 flex gap-3">
+                    {item.stats.map((s, j) => (
+                      <div
+                        key={j}
+                        className="bg-white/15 backdrop-blur-sm border border-white/20 rounded-xl px-3 py-2"
+                      >
+                        <p className="text-white font-extrabold text-sm">
+                          {s.value}
+                        </p>
+                        <p className="text-white/70 text-[10px]">{s.label}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+
+                {/* Text - plain, no card */}
                 <span
-                  className={`${item.tagColor} font-bold text-xs uppercase tracking-widest block mb-1`}
+                  className="text-[10px] font-bold uppercase tracking-widest"
+                  style={{ color: item.tagColor }}
                 >
                   {item.tag}
                 </span>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                <h3 className="text-lg font-extrabold text-slate-900 mt-1 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                <p className="text-slate-500 text-sm leading-relaxed">
                   {item.desc}
                 </p>
               </div>

@@ -89,15 +89,20 @@ export default function EventsPage({ lang, navigateTo }: EventsPageProps) {
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[#EA580C] text-xs font-bold uppercase tracking-widest">
-              GALLERY & UPDATES
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-950 mt-1 mb-4">
+          <div className="text-center max-w-3xl mx-auto mb-16 relative">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-[#C35214] text-lg">✦</span>
+              <span className="text-[#C35214] text-[18px] font-bold uppercase tracking-widest">
+                GALLERY & UPDATES
+              </span>
+              <span className="text-[#C35214] text-lg">✦</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-950 mb-4">
               Latest Events & Media Archive
             </h1>
-            <div className="w-20 h-1 bg-[#EA580C] mx-auto rounded-full mb-4" />
-            <p className="text-[#64748B] text-xs sm:text-sm leading-relaxed">
+
+            <p className="text-[#64748B] text-sm sm:text-base leading-relaxed">
               Follow our direct operational milestones, volunteer camps, student
               gatherings, and browse our public service gallery.
             </p>
