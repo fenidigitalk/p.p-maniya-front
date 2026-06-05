@@ -20,7 +20,7 @@ export default function Footer({ lang, navigateTo, setToastMessage }: FooterProp
         {/* Col 1: About */}
         <div className="col-span-2 space-y-4">
           <span className="text-[#EA580C] font-extrabold text-sm tracking-wider uppercase block">
-            {t.fullName}
+            {t?.fullName}
           </span>
           <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
             Formed in 2019 to honor the lifelong philanthropic vision of Late Popatbhai Premjibhai Maniya. Actively driving educational scholarship schemes, clinical medicine diagnostics, and social welfare programs.
@@ -36,12 +36,12 @@ export default function Footer({ lang, navigateTo, setToastMessage }: FooterProp
           <span className="text-white font-bold text-xs uppercase tracking-widest block">Quick Links</span>
           <ul className="space-y-2.5 text-xs sm:text-sm">
             {[
-              { id: "home", label: t.home },
-              { id: "about", label: t.about },
-              { id: "activities", label: t.activities },
-              { id: "trustees", label: t.trustees },
-              { id: "events", label: t.events },
-              { id: "donate", label: t.contact },
+              { id: "home", label: t?.home },
+              { id: "about", label: t?.about },
+              { id: "activities", label: t?.activities },
+              { id: "trustees", label: t?.trustees },
+              { id: "events", label: t?.events },
+              { id: "donate", label: t?.contact },
             ].map((item) => (
               <li key={item.id}>
                 <button
@@ -75,15 +75,15 @@ export default function Footer({ lang, navigateTo, setToastMessage }: FooterProp
           <ul className="space-y-2.5 text-xs text-slate-400">
             <li className="flex items-start gap-2">
               <MapPin className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-              <span className="select-all">{t.address}</span>
+              <span className="select-all">{t?.address}</span>
             </li>
             <li className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-amber-500 shrink-0" />
-              <span className="select-all">{t.phone}</span>
+              <span className="select-all">{t?.phone}</span>
             </li>
             <li className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-amber-500 shrink-0" />
-              <span className="select-all">{t.email}</span>
+              <span className="select-all">{t?.email}</span>
             </li>
           </ul>
         </div>
