@@ -174,7 +174,7 @@ const handleNavigate = (page: string) => {
               className="bg-[#C35214] text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 hover:-translate-y-0.5 transition-transform flex items-center gap-1.5"
             >
               <Heart className="w-4 h-4 fill-white" />
-              <span>{t.donateCta}</span>
+              <span>{t?.donateCta}</span>
             </button>
 
             {/* MOBILE MENU TOGGLE */}
