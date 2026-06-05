@@ -1,7 +1,7 @@
 // lib/constants.ts
 
 export const IMAGES = {
-  logo: "https://ppmaniyahospital.com/wp-content/uploads/2026/02/PP-Maniya-Hospital-Logo.webp",
+  logo: "/logo.png",
   hero: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=1200",
   education: "https://images.unsplash.com/photo-1594122230689-45899d9e6f69?auto=format&fit=crop&q=80&w=800",
   medicalCamp: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800",
